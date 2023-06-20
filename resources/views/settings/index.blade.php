@@ -3,51 +3,25 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2 class="h2">Configurações</h2>
     </div>
-    @if (Session::has('mensagem.sucesso'))
-      <div class="alert alert-success">
-          {{ Session::get('mensagem.sucesso') }}
-      </div>
-    @endif
-    @if (Session::has('mensagem.fracasso'))
-      <div class="alert alert-danger">
-          {{ Session::get('mensagem.fracasso') }}
-      </div>
-    @endif
-    @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-    @endif
-
-{{--       <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('settings.index') }}">Conta</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('settings.changePhoto') }}">Foto</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('settings.changePassword') }}">Mudar senha</a>
-        </li>
-      </ul>
-
-      <form action="" class="form-control mt-2" method="POST">
-        @csrf
-        <h2 class="mb-2">Mudar nome de usuário</h2>
-        <div class="form-group col-6 mt-3">
-          <label for="name">Nome de usuário</label>
-          <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}" aria-describedby="nameHelp" placeholder="Coloque o novo nome" required>
+      @if (Session::has('mensagem.sucesso'))
+        <div class="alert alert-success">
+            {{ Session::get('mensagem.sucesso') }}
         </div>
-        <div class="form-group col-6 mt-3">
-          <label for="email">Endereço de E-mail</label>
-          <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}" aria-describedby="emailHelp" placeholder="Coloque seu email" disabled>
+      @endif
+      @if (Session::has('mensagem.fracasso'))
+        <div class="alert alert-danger">
+            {{ Session::get('mensagem.fracasso') }}
         </div>
-        <button class="btn btn-primary btn-lg mt-4">Salvar</button>
-        </form> --}}
+      @endif
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
 
          <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">

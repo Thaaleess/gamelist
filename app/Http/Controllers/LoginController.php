@@ -53,19 +53,4 @@ class LoginController extends Controller
 
         return to_route('login');
     }
-
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    public function handleGoogleCallback()
-    {
-        $user = Socialite::driver('google')->user();
-        dd($user);
-
-        Auth::login($user);
-
-        return to_route('users.index')->with('user', $user);
-    }
 }

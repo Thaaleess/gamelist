@@ -40,42 +40,42 @@
       @endif
   </div>
 </main>
-<style>
-    .game-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    <style>
+        .game-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .image-wrapper {
-        position: relative;
-    }
+        .image-wrapper {
+            position: relative;
+        }
 
-    .image-wrapper img {
-        transition: opacity 0.3s;
-    }
+        .image-wrapper img {
+            transition: opacity 0.3s;
+        }
 
-    .image-wrapper:hover img {
-        opacity: 0.7;
-    }
+        .image-wrapper:hover img {
+            opacity: 0.7;
+        }
 
-    .delete-form {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s;
-    }
+        .delete-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
 
-    .game-item:hover .delete-form {
-        opacity: 1;
-        pointer-events: auto;
-    }
+        .game-item:hover .delete-form {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-    .delete-button {
-        margin-top: 10px;
-    }
-</style>
+        .delete-button {
+            margin-top: 10px;
+        }
+    </style>
 </x-userlayoutsidebar>
