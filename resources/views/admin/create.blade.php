@@ -1,4 +1,4 @@
-<x-layout title="Cadastrar novo jogo">
+<x-adminlayout title="Cadastrar novo jogo">
     <form action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row mb-4">
@@ -33,4 +33,4 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg mt-3">Adicionar</button>
     </form>
-</x-layout>
+</x-adminlayout>

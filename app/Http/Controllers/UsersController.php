@@ -56,8 +56,8 @@ class UsersController extends Controller
         $user = User::create($data);
         event(new CreateUser($user));
 
-        Auth::login($user);
+        $user->sendEmailVerificationNotification();
 
-        return to_route('users.index')->with('user', $user);
+        return view('email.index', compact('user'));
     }
 }

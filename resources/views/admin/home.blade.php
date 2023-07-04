@@ -1,4 +1,4 @@
-<x-layout title="Admin - Painel de Controle">
+<x-adminlayout title="Admin - Painel de Controle">
 
     @isset($mensagemSucesso)
         <div class="alert alert-success">
@@ -6,4 +6,4 @@
         </div>
     @endisset
 
-</x-layout>        
+</x-adminlayout>        

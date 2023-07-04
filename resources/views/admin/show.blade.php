@@ -1,4 +1,4 @@
-<x-layout title="Admin - Visualizando o jogo '{!! $games->name !!}'">
+<x-adminlayout title="Admin - Visualizando o jogo '{!! $games->name !!}'">
 
     <div class="row">
         <div class="col-3">
@@ -6,7 +6,7 @@
             @if ($games->game_image === null)
                 <p>Sem imagem</p>
             @else
-                <img src="{{ asset('storage/' . $games->game_image) }}" alt="Imagem do jogo" style="height: 400px" class="img-fluid rounded">
+                <img src="{{ asset('storage/' . $games->game_image) }}" alt="Imagem do jogo" style="width: 100%" class="img-fluid rounded">
             @endif
         </div>
         <div class="col-8">
@@ -30,4 +30,4 @@
             </span>
         </div>
     </div>
-</x-layout>
+</x-adminlayout>

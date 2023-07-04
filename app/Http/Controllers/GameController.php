@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\GameRequest;
 use App\Models\Games;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 
 class GameController extends Controller
 {
@@ -26,19 +27,32 @@ class GameController extends Controller
         return view('admin.create');
     }
 
-    public function store(GameRequest $request){
-        $gamesPath = $request->hasFile('game_image') ? $request->file('game_image')->store('games_images', 'public') : null;
-        
+    public function store(GameRequest $request)
+    {
+        if ($request->hasFile('game_image')) {
+            $image = $request->file('game_image');
+            
+            $resizedImage = Image::make($image)->resize(900, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            
+            $imagePath = $image->store('games_images', 'public');
+            $resizedImage->save(public_path('storage/' . $imagePath));
+        } else {
+            $imagePath = null;
+        }
+    
         $game = Games::create([
             'name' => $request->name,
             'developer' => $request->developer,
             'description' => $request->description,
             'genre' => $request->genre,
-            'game_image' => $gamesPath,
+            'game_image' => $imagePath,
             'release_date' => $request->release_date
         ]);
-
-        return to_route('admin.index')->with('successMessage', "O jogo '{$game->name}' adicionado com sucesso.");
+    
+        return to_route('admin.index')->with('successMessage', "O jogo '{$game->name}' foi adicionado com sucesso.");
     }
 
     public function destroy(Games $games){

@@ -8,7 +8,7 @@ class UserObserver
 {
     public function creating(User $user){
         if (!$user->user_image){
-            $user->user_image = 'user_images/userdefault.jpg';
+            $user->user_image = 'storage/user_images/userdefault.jpg';
         }
     }
 }

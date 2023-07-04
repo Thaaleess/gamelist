@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Paginator::useBootstrap();
 
-        view()->composer(['components.layout','components.userlayout', 'search.index', 'components.userlayoutsidebar'], function ($view){
+        view()->composer(['components.adminlayout','components.userlayout', 'search.index', 'components.userlayoutsidebar'], function ($view){
             $user = Auth::user();
             $view->with('user', $user);
         });

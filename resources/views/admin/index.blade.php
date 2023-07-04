@@ -1,4 +1,4 @@
-<x-layout title="Admin - Lista de Jogos Cadastrados">
+<x-adminlayout title="Admin - Lista de Jogos Cadastrados">
 
     @isset($successMessage)
         <div class="alert alert-success">
@@ -37,4 +37,4 @@
             {{ $games->links() }}
         </div>
     </div>
-</x-layout>        
+</x-adminlayout>        

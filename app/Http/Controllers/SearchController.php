@@ -26,7 +26,8 @@ class SearchController extends Controller
         $user = Auth::user();
         $gameId = $games->id;
 
-        $reviews = Review::where('users_id', $user->id)->where('games_id', $games->id)->get();
+        $reviews = Review::where('games_id', $games->id)->get();
+        $userReviews = Review::where('users_id', $user->id)->where('games_id', $games->id)->get();
         $lists = Lists::where('users_id', $user->id)->get();
 
         $savedLists = $lists->filter(function ($lista) use ($gameId) {
@@ -34,6 +35,6 @@ class SearchController extends Controller
         });
         $games->release_date = Carbon::parse($games->release_date)->format('d/m/Y');
 
-        return view('search.show', compact('games', 'savedLists', 'reviews'));
+        return view('search.show', compact('games', 'savedLists', 'userReviews', 'user', 'reviews'));
     }
 }

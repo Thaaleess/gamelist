@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Games;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,5 +47,13 @@ class ReviewController extends Controller
 
         Session::flash('mensagem.sucesso', 'Sua análise foi alterada com sucesso.');
         return back();
+    }
+
+    public function showReviews(Games $games){
+        $gameId = $games->id;
+
+        $reviews = Review::where('games_id', $games->id)->paginate(10);
+
+        return view('reviews.show_reviews', compact('reviews', 'games'));
     }
 }

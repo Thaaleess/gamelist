@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="col-9">
-            @if ($reviews->isEmpty())
+            @if ($userReviews->isEmpty())
             <form action="{{ route('reviews.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $games->id }}">
@@ -65,18 +65,18 @@
                 <button type="submit" class="btn btn-primary mt-2">Salvar</button>
             </form>
             @else
-                @foreach ($reviews as $rev)
+                @foreach ($userReviews as $userRev)
                     <p><strong>Sua análise sobre o jogo {{ $games->name }}:</strong></p>
-                    <form action="{{ route('reviews.update', $rev->id) }}" method="POST">
-                        <textarea class="form-control mt-2 @if (!$rev->editable) locked @endif" name="review" id="reviewText{{ $rev->id }}" placeholder="Escreva uma análise" style="height: 150px" readonly required>{{ $rev->review }}</textarea>
+                    <form action="{{ route('reviews.update', $userRev->id) }}" method="POST">
+                        <textarea class="form-control mt-2 @if (!$userRev->editable) locked @endif" name="review" id="reviewText{{ $userRev->id }}" placeholder="Escreva uma análise" style="height: 150px" readonly required>{{ $userRev->review }}</textarea>
                         <span class="d-flex justify-content-between mt-2">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                     </form>
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary btn-sm editBtn" data-textarea-id="reviewText{{ $rev->id }}"><i class="fa-solid fa-pencil"></i></button>
-                        <form action="{{ route('reviews.destroy', $rev->id) }}" method="POST" class="ms-1">
+                        <button type="button" class="btn btn-primary btn-sm editBtn" data-textarea-id="reviewText{{ $userRev->id }}"><i class="fa-solid fa-pencil"></i></button>
+                        <form action="{{ route('reviews.destroy', $userRev->id) }}" method="POST" class="ms-1">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
@@ -85,24 +85,31 @@
                 </span>
                 @endforeach
             @endif
+            <hr>
+            <h4>Análises sobre o jogo '{{ $games->name }}':</h4>
+            <div class="row" style="padding-bottom: 60px; padding-top: 10px;">
+                @if($reviews->isEmpty())
+                    <p>Não há nenhuma análise sobre este jogo ainda. Faça uma agora!</p>
+                @else
+                    @foreach($reviews->take(5) as $rev)
+                        <div class="col-2 d-flex flex-column align-items-center" style="padding-bottom: 20px;">
+                            <div class="square-image-container">
+                                <img src="{{ asset($rev->user->user_image) }}" alt="Imagem do usuário" class="square-image rounded mb-2">
+                            </div>       
+                            <h6 class="name-limit mt-1">{{ $rev->user->name }}</h6>
+                        </div>
+                        <div class="col-10">
+                            <p>{{ $rev->review }}</p>
+                        </div>
+                    @endforeach
+                    <form action="{{ route('reviews.show_reviews', $games->id) }}">
+                        <span class="d-flex justify-content-end mt-2">
+                            <button type="submit" class="btn btn-outline-success btn-sm">Ver todas</button>
+                        </span>
+                    </form>
+                @endif
+            </div>    
         </div>
     </div>
 </main>
-<style>
-    .locked {
-        background-color: #f2f2f2;
-        cursor: not-allowed;
-    }
-</style>
-<script>
-    const editButtons = document.querySelectorAll('.editBtn');
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const textareaId = this.getAttribute('data-textarea-id');
-            const textarea = document.getElementById(textareaId);
-            textarea.readOnly = !textarea.readOnly;
-            textarea.classList.toggle('locked');
-        });
-    });
-</script>
 </x-userlayoutsidebar>

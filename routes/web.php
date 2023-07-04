@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\LoginController;
@@ -50,15 +51,26 @@ Route::prefix('gamelist')->group(function () {
         Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
         Route::delete('/reviews/destroy/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
         Route::put('/reviews/update/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+        Route::get('/reviews/{games}', [ReviewController::class, 'showReviews'])->name('reviews.show_reviews');
     
         Route::get('/notes/index/{games}', [NoteController::class, 'index'])->name('notes.index');
         Route::post('/notes/store', [NoteController::class, 'store'])->name('notes.store');
         Route::delete('/notes/destroy/{notes}', [NoteController::class, 'destroy'])->name('notes.destroy');
         Route::put('/notes/update/{notes}', [NoteController::class, 'update'])->name('notes.update');
     });
+    Route::get('/email/index', [EmailController::class, 'index'])->name('email.index');
+    Route::get('/email/verify/{id}', [EmailController::class, 'verifyEmail'])->name('verification.verify');
+    Route::get('/email/resend/{id}', [EmailController::class, 'resendEmail'])->name('verification.resend');   
+
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('signin');
     Route::get('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+    Route::get('/password/recovery', [LoginController::class, 'recoveryPassword'])->name('password.request');
+    Route::post('/password/recovery', [LoginController::class, 'resetPassword'])->name('password.email');
+    Route::get('/password/reset-password/{token}', [LoginController::class, 'formNewPassword'])->name('password.reset');
+    Route::post('/password/reset-password', [LoginController::class, 'newPassword'])->name('password.update');
+
 
     Route::get('/auth/google', [LoginController::class, 'redirectToGoogle']);
     Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);

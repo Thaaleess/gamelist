@@ -1,4 +1,4 @@
-<x-layout title="Editar Jogo '{!! $games->name !!}'">
+<x-adminlayout title="Editar Jogo '{!! $games->name !!}'">
          <form action="{{ route('admin.update', $games->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')  
@@ -35,4 +35,4 @@
         
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>
-</x-layout>
+</x-adminlayout>

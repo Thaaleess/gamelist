@@ -27,8 +27,7 @@ class UserSettingsController extends Controller
         $user = Auth::user();
 
         $validator = Validator::make($request->all(), [
-            'user_image' => ['image', 'mimes:png,jpg'],
-            'user_image' => 'required'
+            'user_image' => ['required', 'image', 'mimes:png,jpg']
         ]);
         if($validator->fails()){
             return redirect()->route('settings.index')->withErrors($validator);
@@ -49,7 +48,7 @@ class UserSettingsController extends Controller
         });
         $resizedImage->save(public_path('storage/' . $imagePath));
 
-        $user->user_image = $imagePath;
+        $user->user_image = 'storage/' . $imagePath;
         $user->save();
 
         Session::flash('mensagem.sucesso', 'Foto alterada com sucesso.');
