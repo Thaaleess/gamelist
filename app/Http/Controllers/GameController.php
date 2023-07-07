@@ -14,7 +14,7 @@ class GameController extends Controller
     }
 
     public function index(){
-        $games = Games::orderBy('name', 'asc')->paginate(10);
+        $games = Games::orderBy('name', 'asc')->paginate(15);
         if ($games->isEmpty() && $games->currentPage() > 1) {
             return redirect($games->previousPageUrl());
         }
@@ -40,7 +40,13 @@ class GameController extends Controller
             $imagePath = $image->store('games_images', 'public');
             $resizedImage->save(public_path('storage/' . $imagePath));
         } else {
-            $imagePath = null;
+            $imagePath = "games_images/game_default.png";
+        }
+    
+        $releaseDate = $request->release_date;
+
+        if ($request->release_date === null){
+            $releaseDate = null;
         }
     
         $game = Games::create([
@@ -49,14 +55,14 @@ class GameController extends Controller
             'description' => $request->description,
             'genre' => $request->genre,
             'game_image' => $imagePath,
-            'release_date' => $request->release_date
+            'release_date' => $releaseDate
         ]);
     
         return to_route('admin.index')->with('successMessage', "O jogo '{$game->name}' foi adicionado com sucesso.");
     }
 
     public function destroy(Games $games){
-        if ($games->game_image !== null){
+        if ($games->game_image !== null && $games->game_image !== 'games_images/game_default.png'){
             $oldImage = public_path('storage/' . $games->game_image);
 
             if (file_exists($oldImage)){
@@ -73,16 +79,16 @@ class GameController extends Controller
     }
 
     public function update(Games $games, GameRequest $request){
-        if ($request->hasFile('game_image')){
-            $oldImage = public_path('storage/' . $games->game_image);
-
-            if (file_exists($oldImage)){
-                unlink($oldImage);
+        if ($request->hasFile('game_image')) {
+                $oldImage = public_path('storage/' . $games->game_image);
+        
+                if ($oldImage !== null && file_exists($oldImage) && is_file($oldImage) && $games->game_image !== 'games_images/game_default.png') {
+                    unlink($oldImage);
+                }
+        
+                $gamesPath = $request->file('game_image')->store('games_images', 'public');
+                $games->game_image = $gamesPath;
             }
-
-            $gamesPath = $request->file('game_image')->store('games_images', 'public');
-            $games->game_image = $gamesPath;
-        }
             $games->fill($request->except('game_image'));
             $games->save();
 
@@ -90,7 +96,9 @@ class GameController extends Controller
     }
 
     public function show(Games $games){
-        $games->release_date = Carbon::parse($games->release_date)->format('d/m/Y');
+        if ($games->release_date !== null){
+            $games->release_date = Carbon::parse($games->release_date)->format('d/m/Y');
+        }
 
         return view ('admin.show')->with('games', $games);
     }

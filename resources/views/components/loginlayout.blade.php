@@ -14,7 +14,7 @@
 		<style>
 			@font-face {
 				font-family: '8-bit Wonder';
-                src: url(' {{ asset('fonts/8-bitwonder.ttf') }} ') format('truetype');
+                src: url('/fonts/8-bitwonder.TTF') format('truetype');
 			}
 		</style>
 	</head>

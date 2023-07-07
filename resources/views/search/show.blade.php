@@ -43,7 +43,11 @@
                     <label for="genre" class="form-label mt-2"><strong>Gênero do jogo:</strong></label>
                     <span>{{ $games->genre }}</span><br>
                     <label for="description" class="form-label mt-2"><strong>Data de lançamento:</strong></label>
+                    @if ($games->release_date === null)
+                    <p>A ser anunciado</p>
+                    @else
                     <span>{{ $games->release_date }}</span>
+                    @endif
                 </div>
             </div>
     <hr>

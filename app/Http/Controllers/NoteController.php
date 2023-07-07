@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class NoteController extends Controller
 {
+    public function __construct(){
+        $this->middleware('CheckUserRole:0');
+    }
+
     public function index(Games $games){
         $user = Auth::user();
 

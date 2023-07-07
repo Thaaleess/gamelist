@@ -59,7 +59,9 @@
                   <div class="py-5 h-100 p-5 text-bg-dark rounded-3">
                     <div class="row">
                       <div class="col-md-3">
-                        <img src="{{ asset('storage/' . $user->user_image) }}" alt="Imagem do usuário" style="width: 100%" class="img-fluid rounded mb-2">
+                          <div class="square-image-container">
+                            <img src="{{ asset($user->user_image) }}" alt="Imagem do usuário" class="img-fluid square-image rounded mb-2">    
+                          </div>
                       </div>
                       <div class="col-md-9">
                         <label for="formFile" class="form-label">Escolha uma foto para usar de imagem de perfil</label>

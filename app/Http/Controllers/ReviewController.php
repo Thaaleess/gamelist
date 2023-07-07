@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class ReviewController extends Controller
 {
+    public function __construct(){
+        $this->middleware('CheckUserRole:0');
+    }
+
     public function index(){
         $user = Auth::user();
         $reviews = Review::where('users_id', $user->id)->with('games')->paginate(5);

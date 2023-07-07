@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class ListController extends Controller
 {
+    public function __construct(){
+        $this->middleware('CheckUserRole:0');
+    }
+
     public function index(Request $request, $listName){
         $user = Auth::user();
         $list = Lists::where('name', $listName)->where('users_id', $user->id)->first();

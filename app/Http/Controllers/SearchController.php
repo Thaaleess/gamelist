@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
+    public function __construct(){
+        $this->middleware('CheckUserRole:0');
+    }
+
     public function index(Request $request){
         $searchItem = $request->input('search');
 
-        $results = Games::where('name', 'like', '%'.$searchItem.'%')->paginate(12);
+        $results = Games::where('name', 'like', '%'.$searchItem.'%')->orderBy('name', 'asc')->paginate(12);
         if ($results->isEmpty() && $results->currentPage() > 1) {
             return redirect($results->previousPageUrl());
         }
@@ -33,7 +37,9 @@ class SearchController extends Controller
         $savedLists = $lists->filter(function ($lista) use ($gameId) {
             return !$lista->games->contains('id', $gameId);
         });
-        $games->release_date = Carbon::parse($games->release_date)->format('d/m/Y');
+        if ($games->release_date !== null){
+            $games->release_date = Carbon::parse($games->release_date)->format('d/m/Y');
+        }
 
         return view('search.show', compact('games', 'savedLists', 'userReviews', 'user', 'reviews'));
     }

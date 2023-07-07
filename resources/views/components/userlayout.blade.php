@@ -9,14 +9,12 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/users/user_index.css') }}">
 
-<style>
-
-  @font-face {
-    font-family: '8-bit Wonder';
-    src: url('{{ asset('fonts/8-bitwonder.ttf') }}') format('truetype');
-  }
-
-</style>
+	<style>
+		@font-face {
+			font-family: '8-bit Wonder';
+            src: url('/fonts/8-bitwonder.TTF') format('truetype');
+		}
+	</style>
 
 </head>
   <body>

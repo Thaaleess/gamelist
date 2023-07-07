@@ -112,9 +112,6 @@ class LoginController extends Controller
         $existingUser = User::where('email', $user->email)->first();
 
         if ($existingUser) {
-            $existingUser->name = $user->name;
-            $existingUser->save();
-
             Auth::login($existingUser);
         } else {
             $newUser = new User();

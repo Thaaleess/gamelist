@@ -11,6 +11,10 @@ use Intervention\Image\Facades\Image;
 
 class UserSettingsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('CheckUserRole:0');
+    }
+    
     public function index(){
         $user = Auth::user();
 
@@ -33,7 +37,7 @@ class UserSettingsController extends Controller
             return redirect()->route('settings.index')->withErrors($validator);
         }
         if ($user->user_image !== 'user_images/userdefault.jpg'){
-            $oldImage = public_path('storage/' . $user->user_image);
+            $oldImage = public_path($user->user_image);
 
             if (file_exists($oldImage)){
                 unlink($oldImage);

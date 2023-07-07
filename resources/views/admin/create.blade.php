@@ -4,23 +4,23 @@
         <div class="row mb-4">
             <div class="col-6">
                 <label for="name" class="form-label">Nome do jogo:</label>
-                <input autofocus type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
+                <input autofocus type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
             </div>
             <div class="col-4">
                 <label for="developer" class="form-label">Desenvolvedora:</label>
-                <input type="text" id="developer" name="developer" class="form-control" value="{{ old('developer') }}">
+                <input type="text" id="developer" name="developer" class="form-control" value="{{ old('developer') }}" required>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-10">
                 <label for="description" class="form-label">Descrição do jogo:</label>
-                <textarea id="description" name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+                <textarea id="description" name="description" class="form-control" rows="4" required>{{ old('description') }}</textarea>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-3">
                 <label for="genre" class="form-label">Gênero:</label>
-                <input type="text" id="genre" name="genre" class="form-control" value="{{ old('genre') }}">
+                <input type="text" id="genre" name="genre" class="form-control" value="{{ old('genre') }}" required>
             </div>
             <div class="col-4">
                 <label for="game_image" class="form-label">Imagem do jogo:</label>
