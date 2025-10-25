@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password', 64);
             $table->string('user_image')->nullable();
             $table->integer('role')->default(0);
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
 
@@ -26,6 +27,18 @@ return new class extends Migration
             'password' => Hash::make('admin123'),
             'user_image' => null,
             'role' => '1',
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Usuário Teste',
+            'email' => 'user@user.com',
+            'password' => Hash::make('user123'),
+            'user_image' => 'images/userdefault.jpg',
+            'role' => '0',
+            'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -1,7 +1,7 @@
 <x-userlayoutsidebar>
   <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2 class="h2">Configurações</h2>
+        <h2 class="h2">⚙️ Configurações</h2>
     </div>
       @if (Session::has('mensagem.sucesso'))
         <div class="alert alert-success">
@@ -25,13 +25,13 @@
 
          <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-tab-pane" type="button" role="tab" aria-controls="account-tab-pane" aria-selected="true">Conta</button>
+            <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-tab-pane" type="button" role="tab" aria-controls="account-tab-pane" aria-selected="true"><i class="bi bi-person-circle"></i> Alterar nome de usuário</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="photo-tab" data-bs-toggle="tab" data-bs-target="#photo-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Foto</button>
+            <button class="nav-link" id="photo-tab" data-bs-toggle="tab" data-bs-target="#photo-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i class="bi bi-camera"></i> Alterar foto de exibição</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Mudar senha</button>
+            <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i class="bi bi-gear"></i> Alterar senha</button>
           </li>
         </ul>
 
@@ -48,29 +48,32 @@
               <label for="email">Endereço de E-mail</label>
               <input type="email" class="form-control" name="email" value="{{ $user->email }}" aria-describedby="emailHelp" placeholder="Coloque seu email" disabled>
             </div>
-            <button class="btn btn-primary btn-lg mt-4">Salvar</button>
+            <button class="btn btn-success btn-lg mt-3 mb-3"><i class="bi bi-check-lg"></i> Salvar alterações</button>
             </form>
           </div>
           <div class="tab-pane fade" id="photo-tab-pane" role="tabpanel" aria-labelledby="photo-tab">
               <form action="{{ route('settings.updatePhoto') }}" class="form-control mt-2" method="POST" enctype="multipart/form-data">
-                @csrf
-                <h2 class="mb-2">Mudar a foto de perfil</h2>
-                <div class="p-4 bg-body-tertiary rounded">
-                  <div class="py-5 h-100 p-5 text-bg-dark rounded-3">
-                    <div class="row">
-                      <div class="col-md-3">
-                          <div class="square-image-container">
-                            <img src="{{ asset($user->user_image) }}" alt="Imagem do usuário" class="img-fluid square-image rounded mb-2">    
+                  @csrf
+                  <h2 class="mb-2">Mudar a foto de perfil</h2>
+                  <div class="p-4 bg-body-tertiary rounded">
+                      <div class="py-5 h-100 p-5 text-bg-dark rounded-3">
+                          <div class="row align-items-center">
+                              <div class="col-md-3">
+                                  <div class="square-image-container">
+                                      <img src="{{ asset($user->user_image) }}" alt="Imagem do usuário" class="img-fluid square-image rounded mb-2">
+                                  </div>
+                                  <h3 class="text-center mt-2">Foto de perfil atual</h3>
+                              </div>
+                              <div class="col-md-9">
+                                  <label for="formFile" class="form-label">Escolha uma foto para usar de imagem de perfil</label>
+                                  <input class="form-control" type="file" id="user_image" name="user_image" accept="image/jpeg, image/png">
+                              </div>
+                          </div>
+                          <div class="d-flex justify-content-end mt-4">
+                              <button class="btn btn-success btn-lg"><i class="bi bi-check-lg"></i> Salvar alterações</button>
                           </div>
                       </div>
-                      <div class="col-md-9">
-                        <label for="formFile" class="form-label">Escolha uma foto para usar de imagem de perfil</label>
-                        <input class="form-control" type="file" id="user_image" name="user_image" accept="image/jpeg, image/png">
-                      </div>
-                    </div>
                   </div>
-                </div>
-                <button class="btn btn-primary btn-lg">Salvar</button>
               </form>
           </div>
           <div class="tab-pane fade" id="password-tab-pane" role="tabpanel" aria-labelledby="password-tab">
@@ -93,7 +96,7 @@
                   <label for="password_confirmation">Confirmar a nova senha</label>
                   <input type="password" class="form-control" name="password_confirmation" placeholder="Confirme a nova senha" required>
                 </div>
-              <button class="btn btn-primary btn-lg mt-4">Salvar</button>
+              <button class="btn btn-success btn-lg mt-3 mb-3"><i class="bi bi-check-lg"></i> Salvar alterações</button>
             </form>
           </div>
         </div>

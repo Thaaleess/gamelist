@@ -1,15 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{{ $title }}</title>
-
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/admin.css') }}">
+    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
   </head>
-
 <body> 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container-fluid">
@@ -25,7 +23,7 @@
                   Olá, {{ $user->name }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-lg-start">
-                  <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                  <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                 </ul>
               </li>
             </ul>
@@ -39,18 +37,18 @@
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
           <a href="{{ route('admin.home') }}" class="nav-link active" aria-current="page">
-            <i class="fa-solid fa-house me-2"></i>
+            <i class="bi bi-house"></i>
             Home
           </a>
         </li>
         <li>
           <a href="{{ route('admin.index') }}" class="nav-link text-white">
-            <i class="fa-solid fa-list me-2"></i> Lista de jogos
+            <i class="bi bi-list-task"></i> Lista de jogos
           </a>
         </li>
         <li>
           <a href="{{ route('admin.create') }}" class="nav-link text-white">
-            <i class="fa-solid fa-plus me-2"></i> Adicionar jogo
+            <i class="bi bi-plus"></i> Adicionar jogo
           </a>
         </li>
       </ul>
@@ -74,8 +72,5 @@
 
       {{ $slot }}
 
-    </main>
-  </main>
-      <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   </body>
 </html>

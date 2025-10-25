@@ -31,6 +31,6 @@
                 <input type="date" id="release_date" name="release_date" class="form-control" value="{{ old('release_date') }}">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg mt-3">Adicionar</button>
+        <button type="submit" class="btn btn-primary btn-lg mt-3"><i class="bi bi-plus-lg"></i> Adicionar</button>
     </form>
 </x-adminlayout>

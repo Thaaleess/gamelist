@@ -8,31 +8,32 @@
             @endif
         </div>
         <div class="row">
-                <div class="col-3">
-                    <label for="name" class="form-label"><strong>Capa do jogo:</strong></label>
-                    <img src="{{ asset('storage/' . $games->game_image) }}" alt="Imagem do jogo" width="100%" class="img-fluid rounded">
-                    @if ($savedLists->isEmpty())
+            <div class="col-3">
+                <label for="name" class="form-label"><strong>📀 Capa do jogo:</strong></label>
+                <img src="{{ asset('storage/' . $games->game_image) }}" alt="Imagem do jogo" width="100%" class="img-fluid rounded">
+                @if ($savedLists->isEmpty())
                     <p class="mt-2"><strong>Este jogo já está incluído em todas as suas listas disponíveis.</strong></p>
-                    @else
-                    <form action="{{ route('lists.store') }}" method="POST">
+                @else
+                    <form action="{{ route('lists.store') }}" method="POST" class="mt-4">
                         @csrf
                         <input type="hidden" name="games_id" value="{{ $games->id }}">
-                        <span class="d-flex mt-4">
-                            <div class="form-floating">
-                            <select class="form-select" id="floatingSelect" name="lists_id">
-                                @foreach($savedLists as $list)
+
+                        <div class="d-flex gap-2 align-items-stretch">
+                            <div class="form-floating flex-grow-1">
+                                <select class="form-select" id="floatingSelect" name="lists_id" required>
+                                    <option value="" selected disabled>Selecione uma opção</option>
+                                    @foreach($savedLists as $list)
                                         <option value="{{ $list->id }}">{{ $list->name }}</option>
-                                @endforeach
-                            </select>
-                            <label for="floatingSelect">Selecione uma opção</label>
+                                    @endforeach
+                                </select>
+                                <label for="floatingSelect">Adicione o jogo em uma lista</label>
                             </div>
-                        </span>
-                        <span class="d-flex justify-content-end mt-2">
-                            <button type="submit" class="btn btn-outline-success">Salvar</button>
-                        </span>
+                            <button type="submit" class="btn btn-success px-4"><i class="bi bi-check-lg"></i></button>
+                        </div>
                     </form>
-                    @endif
-                </div>
+                @endif
+            </div>
+
                 <div class="col-8 mb-2">
                     <label for="name" class="form-label mt-2"><strong>Nome do jogo:</strong></label>
                     <span>{{ $games->name }}</span><br>
@@ -54,9 +55,9 @@
     <div class="row" style="padding-bottom: 60px">
         <div class="col-3">
           <div class="list-group">
-            <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action active" aria-current="true"><i class="fa-solid fa-house me-2"></i> Home</a>
-            <a href="{{ route('reviews.index') }}" class="list-group-item list-group-item-action"><i class="fa-solid fa-chart-bar  me-2" width="16" height="16"></i> Suas análises</a>
-            <a href="{{ route('notes.index', $games->id) }}" class="list-group-item list-group-item-action"><i class="fa-solid fa-note-sticky  me-2" width="16" height="16"></i> Lembretes deste jogo</a>
+            <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action active" aria-current="true"><i class="bi bi-house"></i> Home</a>
+            <a href="{{ route('reviews.index') }}" class="list-group-item list-group-item-action"><i class="bi bi-clipboard"></i> Todas as minhas análises</a>
+            <a href="{{ route('notes.index', $games->id) }}" class="list-group-item list-group-item-action"><i class="bi bi-card-list"></i> Lembretes deste jogo</a>
           </div>
         </div>
         <div class="col-9">
@@ -66,7 +67,7 @@
                 <input type="hidden" name="game_id" value="{{ $games->id }}">
                 <label for="review">Faça uma análise do jogo {{ $games->name }}:</label>
                 <textarea class="form-control mt-2" name="review" placeholder="Escreva uma análise" style="height: 150px"></textarea>
-                <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+                <button type="submit" class="btn btn-primary mt-2"><i class="bi bi-plus-lg"></i> Adicionar análise</button>
             </form>
             @else
                 @foreach ($userReviews as $userRev)
@@ -76,14 +77,14 @@
                         <span class="d-flex justify-content-between mt-2">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-check-lg"></i> Salvar alterações</button>
                     </form>
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary btn-sm editBtn" data-textarea-id="reviewText{{ $userRev->id }}"><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" class="btn btn-primary btn-sm editBtn" data-textarea-id="reviewText{{ $userRev->id }}"><i class="bi bi-pencil"></i></button>
                         <form action="{{ route('reviews.destroy', $userRev->id) }}" method="POST" class="ms-1">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                         </form>
                     </div>
                 </span>
@@ -108,7 +109,7 @@
                     @endforeach
                     <form action="{{ route('reviews.show_reviews', $games->id) }}">
                         <span class="d-flex justify-content-end mt-2">
-                            <button type="submit" class="btn btn-outline-success btn-sm">Ver todas</button>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Ver todas as análises deste jogo</button>
                         </span>
                     </form>
                 @endif

@@ -33,6 +33,6 @@
                 </div>
             </div>
         
-            <button type="submit" class="btn btn-primary">Atualizar</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Salvar alterações</button>
         </form>
 </x-adminlayout>

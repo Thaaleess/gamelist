@@ -17,6 +17,26 @@ return new class extends Migration
             $table->string('name', 128);
             $table->foreignId('users_id')->constrained();
         });
+
+        DB::table('lists')->insert([
+            'name' => 'Jogos completados',
+            'users_id' => '2',
+        ]);
+
+        DB::table('lists')->insert([
+            'name' => 'Jogos em andamento',
+            'users_id' => '2',
+        ]);
+
+        DB::table('lists')->insert([
+            'name' => 'Jogos que quero jogar',
+            'users_id' => '2',
+        ]);
+        
+        DB::table('lists')->insert([
+            'name' => 'Jogos favoritos',
+            'users_id' => '2',
+        ]);  
     }
 
     /**

@@ -43,4 +43,13 @@ class SearchController extends Controller
 
         return view('search.show', compact('games', 'savedLists', 'userReviews', 'user', 'reviews'));
     }
+
+    public function showGames(){
+        $games = Games::orderBy('name', 'asc')->paginate(12);
+        if ($games->isEmpty() && $games->currentPage() > 1) {
+            return redirect($games->previousPageUrl());
+        }
+
+        return view('search.show_games', compact('games'));
+    }
 }

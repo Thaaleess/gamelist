@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<title>GAMELIST - Login</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-
-		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/login/login.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/login/size.css') }}">
-
-		<style>
-			@font-face {
-				font-family: '8-bit Wonder';
+    <head>
+        <title>GAMELIST - Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/login/login.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/login/size.css') }}">
+        @vite(['resources/js/app.js', 'resources/sass/app.scss'])
+        <style>
+            @font-face {
+                font-family: '8-bit Wonder';
                 src: url('/fonts/8-bitwonder.TTF') format('truetype');
-			}
-		</style>
-	</head>
+            }
+        </style>
+    </head>
 	<body>
         <div class="limiter">
             <div class="container-login">
@@ -48,12 +45,12 @@
 
                     <div class="text-center p-t-15 p-b-15">
                         <span class="txt2">
-                            ou se conecte usando
+                            ou se conecte usando uma conta Google
                         </span>
                     </div>
                     <div class="login-form-social flex-c-m">
                         <a href="{{ url('gamelist/auth/google') }}" class="login-form-social-item flex-c-m bg1 m-r-5">
-                            <i class="fa-brands fa-google" aria-hidden="true"></i>
+                            <i class="bi bi-google"></i>
                         </a>
                     </div>
                     </div>
@@ -61,6 +58,5 @@
                 </div>
             </div>
         </div>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	</body>
 </html>

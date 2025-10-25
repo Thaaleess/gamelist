@@ -1,7 +1,7 @@
 <x-userlayoutsidebar>
     <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2 class="h2">{{ $listName }}</h2>
+            <h2 class="h2">🕹️ {{ $listName }}</h2>
         </div>
 
         @if (Session::has('mensagem.sucesso'))
@@ -26,7 +26,7 @@
                                         <form action="{{ route('lists.removeGame', [$listId, $game->id]) }}" method="POST" class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm delete-button"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm delete-button"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </div>
                                     <h6 class="mt-2">{{ $game->name }}</h6>

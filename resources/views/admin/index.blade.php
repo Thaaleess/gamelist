@@ -20,12 +20,12 @@
                         <td>{{ $game->name }}</td>
                         <td>
                             <span class="d-flex">
-                                <a href="{{ route('admin.show', $game->id) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                <a href="{{ route('admin.edit', $game->id) }}" class="btn btn-primary btn-sm ms-1"><i class="fa-solid fa-pencil"></i></a>
+                                <a href="{{ route('admin.show', $game->id) }}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.edit', $game->id) }}" class="btn btn-primary btn-sm ms-1"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('admin.destroy', $game->id) }}" method="post" class="ms-1">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                                 </form>
                             </span>
                         </td>

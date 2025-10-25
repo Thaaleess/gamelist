@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('note', 1024);
             $table->foreignId('users_id')->constrained();
-            $table->foreignId('games_id')->constrained();
+            $table->foreignId('games_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

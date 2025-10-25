@@ -25,11 +25,11 @@
             <span>{{ $games->release_date }}</span>
             @endif
             <span class="d-flex justify-content-end mt-4">
-                <a href="{{ route('admin.edit', $games->id) }}" class="btn btn-primary ms-1"><i class="fa-solid fa-pencil"></i></a>
+                <a href="{{ route('admin.edit', $games->id) }}" class="btn btn-primary ms-1"><i class="bi bi-pencil"></i></a>
                 <form action="{{ route('admin.destroy', $games->id) }}" method="post" class="ms-1">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                 </form>
             </span>
         </div>

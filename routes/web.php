@@ -46,6 +46,7 @@ Route::prefix('gamelist')->group(function () {
     
         Route::get('/search', [SearchController::class, 'index'])->name('search.index');
         Route::get('/search/show/{games}', [SearchController::class, 'show'])->name('search.show');
+        Route::get('/search/games', [SearchController::class, 'showGames'])->name('search.show_games');
     
         Route::get('/reviews/index', [ReviewController::class, 'index'])->name('reviews.index');
         Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
