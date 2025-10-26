@@ -1,4 +1,4 @@
-# 🎮 Plataforma de Gerenciamento de Jogos  
+# 🎮 GAMELIST - Plataforma de Gerenciamento de Jogos  
 
 ## 📘 Sobre o Projeto  
 
