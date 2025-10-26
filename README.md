@@ -1,4 +1,4 @@
-# 🎮 GAMELIST - Biblioteca de Jogos
+# 🎮 GAMELIST - Organizador de Jogos
 
 ## 📘 Sobre o Projeto  
 
